@@ -46,10 +46,15 @@ app.post("/login", (req, res) => {
             if (user.password === password) {
                 console.log("YES")
                 res.json("succesfully logged in user") // send response back
+            // if user credentials dont match
             } else {
                 console.log("NO")
-                res.json("incorrect email/password or user doesn't exist")
+                res.status(400).json("incorrect email/password or user doesn't exist") // sending status code so we can check err-response in client
             }
+        // if user obj is not found
+        } else {
+            console.log("NO")
+                res.status(400).json("incorrect email/password or user doesn't exist")
         }
     })
 
