@@ -21,6 +21,12 @@ app.listen(3001, () => {
 
 // api-endpoint-post for register-form submission, request that was sent to this endpoint, response that we will give
 app.post("/register", (req, res) => {
+    const {name, email, password} = req.body;
+    const existingUser =  UserModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+
     UserModel.create(req.body)  // request.body = { name, email, password }
     .then(user => res.json(users))
     .catch(err => res.json(err))
