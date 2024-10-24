@@ -27,3 +27,25 @@ app.post("/register", (req, res) => {
 
 })
 
+// post-request-login-api-endpoint
+app.post("/login", (req, res) => {
+    
+    const {email, password} = req.body;
+
+    UserModel.findOne({email: email})
+    .then(user => {
+        if (user) {
+            if (user.password === password) {
+                console.log("YES")
+                res.json("succesfully logged in user") // send response back
+            } else {
+                console.log("NO")
+                res.json("incorrect email/password or user doesn't exist")
+            }
+        }
+    })
+
+
+
+})
+
