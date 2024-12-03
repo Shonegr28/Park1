@@ -73,7 +73,8 @@ app.post("/create-parking-lot", async (req, res) => {
             return res.status(400).json({ error: "All fields are required" });
         }
 
-        const newParkingLot = new ParkingLotModel({ name, latitude, longitude });
+        const status="none";
+        const newParkingLot = new ParkingLotModel({ name, latitude, longitude, status});
 
         await newParkingLot.save();
 
@@ -85,3 +86,45 @@ app.post("/create-parking-lot", async (req, res) => {
     
 
 })
+
+app.post("/update-parking-lot-status", async (req, res) => {
+    const { locationKey, status } = req.body; // Access name and status from the request body
+
+    try {
+        const parkingLot = await ParkingLotModel.findOne({ name: locationKey }); // Search for parking lot by name
+
+        if (!parkingLot) {
+            return res.status(404).json({ error: "Parking lot not found" });
+        }
+
+        // Update the status of the parking lot
+        parkingLot.status = status;
+        const updatedAt = new Date();
+        parkingLot.updatedAt =updatedAt;
+        await parkingLot.save(); // Save the updated parking lot
+
+        res.status(200).json(parkingLot); // Return the updated parking lot
+    } catch (err) {
+        console.error("Error updating parking lot:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
+
+app.get("/get-parking-lot-status", async (req, res) => {
+    const { selectedParking } = req.query; // Access selectedParking from query params
+
+    try {
+        const parkingLot = await ParkingLotModel.findOne({ name: selectedParking }); // Search for parking lot by name
+
+        if (!parkingLot) {
+            return res.status(404).json({ error: "Parking lot not found" });
+        }
+
+        res.status(200).json({ cur_lot: parkingLot }); // Return the status of the parking lot
+    } catch (err) {
+        console.error("Error fetching parking lot:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});

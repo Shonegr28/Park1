@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const parkingSchema = new mongoose.Schema({
     
     name: { type: String, required: true },          // Parking lot name (String)
+    status: { type: String, required: false }, 
     latitude: { type: Number, required: true },      // Latitude (Number)
     longitude: { type: Number, required: true },     // Longitude (Number)
     updatedAt: { type: Date, default: Date.now }
