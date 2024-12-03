@@ -58,7 +58,14 @@ app.post("/login", (req, res) => {
         }
     })
 
-
-
 })
 
+
+app.post("/create-parking-lot", (req, res) => {
+    
+    const {name, lon, lat} = req.body;
+    console.log("endpoint->"+name + " " + lon + " " + lat);
+    res.status(200).json("Success");
+    
+
+})

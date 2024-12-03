@@ -8,6 +8,7 @@ import Myprofile from './pages/Myprofile'
 import Navbar from './components/Navbar'
 import Register from './pages/Register'
 import Navbar1 from './components/Navbar1'
+import CreateParkingLot from './pages/CreateParkingLot'
 
 
 const App = () => {
@@ -23,6 +24,9 @@ const App = () => {
         <Route path='/login' element={<Login/>} />
         <Route path='/myprofile' element={<Myprofile/>} />
         <Route path='/register' element={<Register/>} />
+        
+
+        <Route path='/create-parking-lot' element={<CreateParkingLot/>} />
 
 
       </Routes>
