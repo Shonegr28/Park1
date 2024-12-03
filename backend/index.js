@@ -4,6 +4,8 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const UserModel = require("./models/User")
+const ParkingLotModel = require("./models/ParkingLot")
+
 
 const app = express()
 app.use(express.json())
@@ -39,6 +41,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", (req, res) => {
     
     const {email, password} = req.body;
+    console.log("loginEndpoint-> " + "sucess");
 
     UserModel.findOne({email: email})
     .then(user => {
@@ -61,11 +64,24 @@ app.post("/login", (req, res) => {
 })
 
 
-app.post("/create-parking-lot", (req, res) => {
+app.post("/create-parking-lot", async (req, res) => {
     
-    const {name, lon, lat} = req.body;
-    console.log("endpoint->"+name + " " + lon + " " + lat);
-    res.status(200).json("Success");
+    try {
+        const { name, latitude, longitude } = req.body;
+
+        if (!name || latitude === undefined || longitude === undefined) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
+
+        const newParkingLot = new ParkingLotModel({ name, latitude, longitude });
+
+        await newParkingLot.save();
+
+        res.status(201).json({ message: "Parking lot created successfully", parkingLot: newParkingLot });
+    } catch (err) {
+        console.error("Error creating parking lot:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
     
 
 })
