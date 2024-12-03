@@ -7,6 +7,8 @@ import Map from './pages/Map'
 import Myprofile from './pages/Myprofile'
 import Navbar from './components/Navbar'
 import Register from './pages/Register'
+import Navbar1 from './components/Navbar1'
+
 
 const App = () => {
   return (

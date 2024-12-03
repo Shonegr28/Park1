@@ -10,18 +10,12 @@ const Navbar = () => {
         <ul>
             <NavLink className='re' to='/'>
                 <li>HOME</li>
-                <hr/>
-
             </NavLink>
             <NavLink className='re' to='/about'>
                 <li>ABOUT</li>
-                <hr/>
-                
             </NavLink>
             <NavLink className='re' to='/login'>
                 <li>LOGIN</li>
-                <hr/>
-                
             </NavLink>
         </ul>
     </div>

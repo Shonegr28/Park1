@@ -3,12 +3,10 @@ body{
 background-color: #B71313;
 }
 .container {
-
-
     
     display: flex; /* Use flexbox for centering */
     justify-content: center; /* Center horizontally */
-    padding-left: 150px;
+    padding-left: 200px;
     align-items: center; /* Center vertically */
     height: 100vh; /* Full viewport height */
 }
@@ -16,7 +14,7 @@ h1{
     color: black;
     font-size: 50px;
     font-weight: 800;
-    margin-top: 50px;
+    margin-top: center;
     margin-bottom: 50px;
     margin-left: 50px;
     margin-right: 50px;
@@ -35,11 +33,12 @@ form {
     border-radius: 40px; /* Optional: Add rounded corners */
     background-color: white; /* Set the form background color to white */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+    gap: 5px; /* Add space between elements */
 }
 
 input {
     width: 100%; /* Make inputs full width within the form */
-    margin-bottom: 100000000000px; /* Space between inputs */
+    margin-bottom: 100px; /* Space between inputs */
     padding: 10px; /* Add padding inside the input */
     font-size: 16px; /* Adjust font size for input */
     border: 1px solid #ccc; /* Add a border to inputs */
